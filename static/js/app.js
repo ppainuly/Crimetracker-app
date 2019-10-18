@@ -35,9 +35,9 @@ var baseLayers = {
   "Aerial Imagery": satellite
 };
 
-var layerControl = L.control.groupedLayers(baseLayers,  {
-  collapsed: isCollapsed
-}).addTo(map);
+// var layerControl = L.control.groupedLayers(baseLayers,  {
+//   collapsed: isCollapsed
+// }).addTo(map);
 
 
 $(window).resize(function() {
@@ -211,14 +211,14 @@ function sidebarClick(id) {
         var iconurl = "";
 
         if(incident.type.startsWith("CRASH")){
-            $("#feature-list tbody").append('<tr class="feature-row" id="'+ i + 'lat="' + incident.location[0] + '" lng="' + incident.location[1]+ '"><td style="vertical-align: middle;"><img width="22" height="22" src="assets/img/icons8-car-100v2.png"></td><td class="feature-name">' + incident.address );
-            iconurl = "assets/img/icons8-car-100v2.png";
+            $("#feature-list tbody").append('<tr class="feature-row" id="'+ i + 'lat="' + incident.location[0] + '" lng="' + incident.location[1]+ '"><td style="vertical-align: middle;"><img width="22" height="22" src="../static/img/icons8-car-100v2.png"></td><td class="feature-name">' + incident.address );
+            iconurl = "../static/img/icons8-car-100v2.png";
         } else if(incident.type.startsWith("TRAFFIC")){
-            $("#feature-list tbody").append('<tr class="feature-row" id="'+ i + 'lat="' + incident.location[0] + '" lng="' + incident.location[1]+ '"><td style="vertical-align: middle;"><img width="22" height="22" src="assets/img/icons8-under-construction-64.png"></td><td class="feature-name">' + incident.address );
-            iconurl = "assets/img/icons8-under-construction-64.png";
+            $("#feature-list tbody").append('<tr class="feature-row" id="'+ i + 'lat="' + incident.location[0] + '" lng="' + incident.location[1]+ '"><td style="vertical-align: middle;"><img width="22" height="22" src="../static/img/icons8-under-construction-64.png"></td><td class="feature-name">' + incident.address );
+            iconurl = "../static/img/icons8-under-construction-64.png";
         } else{
-            $("#feature-list tbody").append('<tr class="feature-row" id="'+ i + 'lat="' + incident.location[0] + '" lng="' + incident.location[1]+ '"><td style="vertical-align: middle;"><img width="22" height="22" src="assets/img/icons8-handcuffs-50.png"></td><td class="feature-name">' + incident.address );
-            iconurl = "assets/img/icons8-handcuffs-50.png";
+            $("#feature-list tbody").append('<tr class="feature-row" id="'+ i + 'lat="' + incident.location[0] + '" lng="' + incident.location[1]+ '"><td style="vertical-align: middle;"><img width="22" height="22" src="../static/img/icons8-handcuffs-50.png"></td><td class="feature-name">' + incident.address );
+            iconurl = "../static/img/icons8-handcuffs-50.png";
         }
         var icon = new L.Icon({
           iconUrl: iconurl,
@@ -252,7 +252,7 @@ function sidebarClick(id) {
       if(incidentType[index].startsWith("CRASH")){
 
       var iconHover = new L.Icon({
-        iconUrl: 'assets/img/icons8-car-100v2hover.png',
+        iconUrl: '../static/img/icons8-car-100v2hover.png',
         shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
         iconSize: [32, 32],
         iconAnchor: [11, 41],
@@ -262,7 +262,7 @@ function sidebarClick(id) {
 
     }else if(incidentType[index].startsWith("TRAFFIC")){
       var iconHover = new L.Icon({
-        iconUrl: 'assets/img/icons8-under-construction-64hover.png',
+        iconUrl: '../static/img/icons8-under-construction-64hover.png',
         shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
         iconSize: [32, 32],
         iconAnchor: [11, 41],
@@ -271,7 +271,7 @@ function sidebarClick(id) {
        });  
     } else{
       var iconHover = new L.Icon({
-        iconUrl: 'assets/img/icons8-handcuffs-50hover.png',
+        iconUrl: '../static/img/icons8-handcuffs-50hover.png',
         shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
         iconSize: [32, 32],
         iconAnchor: [11, 41],
@@ -958,7 +958,7 @@ var stations = [
 for (var i = 0; i < stations.length; i++) {
   var station = stations[i];
   var policeWomanIcon = new L.Icon({
-   iconUrl: 'assets/img/icons8-policeman-female-40.png',
+   iconUrl: '../static/img/icons8-policeman-female-40.png',
    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
    iconSize: [30, 30],
    iconAnchor: [12, 41],

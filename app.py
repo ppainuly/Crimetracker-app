@@ -52,47 +52,53 @@ def incidentdata():
             "location": [29.856015,-95.472975],
             "time": "October 14, 2019",
             "type":"Shooting",
-            "address": "704 Greens Road",
+            "address": "704 Greens Road"
+        },
+        {
+            "location": [29.720133,-95.484993],
+            "time": "October 14, 2019",
+            "type":"Fatal Shooting",
+            "address": "5900 Selinsky Road"
         },
         {
             "location": [29.693009,-95.496706],
             "time": "October 14, 2019",
             "type":"Sexual Assault",
-            "address": "11303 Bissonnet Street",
+            "address": "11303 Bissonnet Street"
+        },
+                {
+            "location": [29.674537,-95.577129],
+            "time": "October 14, 2019",
+            "type":"Shooting",
+            "address": "5900 Glenmont Drive"
+        },
+                {
+            "location": [29.7094859,-95.6880571],
+            "time": "October 14, 2019",
+            "type":"Shooting",
+            "address": "5901 Selinksy Road"
+        },
+                {
+            "location": [29.679933,-95.600118],
+            "time": "October 14, 2019",
+            "type":"Fatal Crash",
+            "address": "2500 South Barker Cypress Road"
         },
         {
-            "location": [29.693009,-95.496706],
+            "location": [29.7050898,-95.5193628],
             "time": "October 14, 2019",
-            "type":"Sexual Assault",
-            "address": "11303 Bissonnet Street",
-        },
-                {
-            "location": [29.693009,-95.496706],
-            "time": "October 14, 2019",
-            "type":"Sexual Assault",
-            "address": "11303 Bissonnet Street",
-        },
-                {
-            "location": [29.1293009,-95.496706],
-            "time": "October 14, 2019",
-            "type":"Sexual Assault",
-            "address": "11303 Bissonnet Street",
-        },
-                {
-            "location": [29.193009,-95.496706],
-            "time": "October 14, 2019",
-            "type":"Sexual Assault",
-            "address": "11303 Bissonnet Street",
+            "type":"Fatal Shooting",
+            "address": "12600 Brookglade Circle",
         },
         {
-            "location": [29.613009,-95.496706],
+            "location": [29.8702733,-95.4734499],
             "time": "October 14, 2019",
-            "type":"Sexual Assault",
-            "address": "11303 Bissonnet Street",
+            "type":"Fatal Shooting",
+            "address": "8600 Bellaire Boulevard",
         }
     ]
     pprint(incidents)
     return json.dumps(incidents)
     
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run()
