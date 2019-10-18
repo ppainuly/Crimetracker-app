@@ -85,6 +85,12 @@ input[type="radio"], input[type="checkbox"] {
 .table {
   margin-bottom: 0px;
 }
+.navbar {
+  background-color:#4d984e;
+}
+a#list-btn, a#toolsDrop.dropdown-toggle, a#full-extent-btn, a#about-btn{
+  color:white
+}
 .navbar .navbar-brand {
   font-weight: bold;
   font-size: 25px;
