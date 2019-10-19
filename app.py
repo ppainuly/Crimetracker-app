@@ -3,6 +3,7 @@ import json
 from pprint import pprint
 from flask import (
     Flask,
+    url_for,
     render_template,
     jsonify,
     request,
@@ -13,6 +14,10 @@ app = Flask(__name__)
 @app.route("/")
 def build():
     return render_template("index.html")
+
+@app.route("/crime")
+def crime():
+    return render_template("crime.html")
 
 
 @app.route("/api/incidents")
@@ -101,4 +106,4 @@ def incidentdata():
     return json.dumps(incidents)
     
 if __name__ == '__main__':
-    app.run()
+    app.run(port=5009, debug=True)

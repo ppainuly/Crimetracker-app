@@ -975,4 +975,4 @@ for (var i = 0; i < stations.length; i++) {
 (function blink() {
   $('.blink_me').fadeOut(700).fadeIn(700, blink);
 })();
-blink_me
+//blink_me();
