@@ -19,6 +19,11 @@ def build():
 def crime():
     return render_template("crime.html")
 
+@app.route("/index")
+def index():
+    return render_template("index.html")
+
+
 
 @app.route("/api/incidents")
 def incidentdata():

@@ -16,9 +16,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css">
     <link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css">
-    <link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css">
+    <link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css"> 
     <link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.css">
-    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/leaflet-groupedlayercontrol/leaflet.groupedlayercontrol.css') }}"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/leaflet-groupedlayercontrol/leaflet.groupedlayercontrol.css') }}"> 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
 
     <link rel="apple-touch-icon" sizes="76x76" href="{{ url_for('static',filename='img/favicon-76.png') }}">
@@ -49,15 +49,15 @@
           <ul class="nav navbar-nav">
             <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="about-btn"><i class="fa fa-question-circle white"></i>&nbsp;&nbsp;About</a></li>
             <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="full-extent-btn"><i class="fa fa-arrows-alt"></i>&nbsp;&nbsp;Full Map View</a></li>
-            <li class="dropdown">
+            <!-- <li class="dropdown">
               <a id="toolsDrop" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-map"></i>&nbsp;&nbsp;Map Select <b class="caret"></b></a>
-              
-              <ul class="dropdown-menu">
+               -->
+              <!-- <ul class="dropdown-menu">
                 <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="full-extent-btn" style="color:#333"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;Live Map</a></li>
                 <li><a href="/crime" data-toggle="collapse" data-target=".navbar-collapse.in" id="legend-btn"><i class="fa fa-map-o"></i>&nbsp;&nbsp;Historical</a></li>
                 <li class="divider hidden-xs"></li>
-              </ul>
-            </li>
+              </ul> -->
+            <!-- </li> -->
 
             <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="full-extent-btn"><i
               class="fa fa-arrows-alt"></i>&nbsp;&nbsp;Historical Map</a></li>
@@ -123,7 +123,7 @@
     <script src="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js"></script>
     <script src="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
-    <!-- <script src="{{ url_for('static', filename='js/leaflet-groupedlayercontrol/leaflet.groupedlayercontrol.js') }}"></script>   -->
+    <script src="{{ url_for('static', filename='js/leaflet-groupedlayercontrol/leaflet.groupedlayercontrol.js') }}"></script>   
     <script src="{{ url_for('static', filename='js/config.js') }}"></script>   
     <!-- <script src="{{ url_for('static', filename='js/app.js') }}"></script>  -->
     <script src="{{ url_for('static', filename='js/crime.js') }}"></script>

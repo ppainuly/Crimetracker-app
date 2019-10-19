@@ -1,23 +1,20 @@
-var activity = []
-var place = []
+var map, featureList, boroughSearch = [], theaterSearch = [], museumSearch = [];
+let latlon = []
 let markerArray = []
 let popup = []
+let incidentType = []
 
-// Create a map object
-var crimeMap = L.map("map", {
-  center: [29.710, -95.376],
+map = L.map("map", {
+  center: [29.8204, -95.3298],
   zoom: 10
 });
-
 
 L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
   attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
   maxZoom: 18,
   id: "mapbox.streets",
   accessToken: "pk.eyJ1IjoiYW5kZXJzamgiLCJhIjoiY2sxODNlMDBzMDZ6cTNvcDFwZTh0eGJnNyJ9.UOYs4mSt5CSEuifzIxu1tA"
-}).addTo(crimeMap);
-
-
+}).addTo(map);
 
 // /* Basemap Layers */
 var streetMap= L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
@@ -40,13 +37,25 @@ var baseLayers = {
 
 // var layerControl = L.control.groupedLayers(baseLayers,  {
 //   collapsed: isCollapsed
-// }).addTo(crimeMap);
-
+// }).addTo(map);
 
 
 $(window).resize(function() {
   sizeLayerControl();
 });
+
+// $(document).on("click", ".feature-row", function(e) {
+//   $(document).off("mouseout", ".feature-row", clearHighlight);
+//   sidebarClick(parseInt($(this).attr("id"), 10));
+// });
+
+// if ( !("ontouchstart" in window) ) {
+//   $(document).on("mouseover", ".feature-row", function(e) {
+//     highlight.clearLayers().addLayer(L.circleMarker([$(this).attr("lat"), $(this).attr("lng")], highlightStyle));
+//   });
+// }
+
+// $(document).on("mouseout", ".feature-row", clearHighlight);
 
 $("#about-btn").click(function() {
   $("#aboutModal").modal("show");
@@ -54,11 +63,20 @@ $("#about-btn").click(function() {
   return false;
 });
 
+
+
+
 $("#legend-btn").click(function() {
   $("#legendModal").modal("show");
   $(".navbar-collapse.in").collapse("hide");
   return false;
 });
+
+// $("#login-btn").click(function() {
+//   $("#loginModal").modal("show");
+//   $(".navbar-collapse.in").collapse("hide");
+//   return false;
+// });
 
 $("#list-btn").click(function() {
   animateSidebar();
@@ -80,7 +98,6 @@ $("#sidebar-hide-btn").click(function() {
   return false;
 });
 
-
 function animateSidebar() {
   $("#sidebar").animate({
     width: "toggle"
@@ -92,6 +109,10 @@ function animateSidebar() {
 function sizeLayerControl() {
   $(".leaflet-control-layers").css("max-height", $("#map").height() - 50);
 }
+
+// function clearHighlight() {
+//   highlight.clearLayers();
+// }
 
 function sidebarClick(id) {
   var layer = markerClusters.getLayer(id);
@@ -105,225 +126,253 @@ function sidebarClick(id) {
 }
 
 
- // Store API query variables
-var baseURL = "https://moto.data.socrata.com/resource/p6kq-vsa3.json";
+d3.json("https://moto.data.socrata.com/resource/p6kq-vsa3.json").then(function(response){
 
-
-  // Grab the data with d3
-d3.json(baseURL, response => {
-  // let coordinates = [response.latitude, response.longitude]
-  //   console.log(coordinates)
-    console.log("Adding Markers")
-    // Create a new marker cluster group
   let markers = L.markerClusterGroup();
   
-console.log(response)
-console.log(response.length)
+  console.log("Starting Marker");
+  console.log(response);
+  
+      // Loop through data
+    for (var i = 0; i <= 1000; i++) {
 
-    // Loop through data
-  for (var i = 0; i <= 100; i++) {
-  
-      // Set the data location property to a variable
-    var location = response[i].location;
-  
-// //       // Check for location property
-    if (location) {
-  
-         // Add a new marker to the cluster group and bind a pop-up
-      markers.addLayer(L.marker([location.coordinates[1], location.coordinates[0]])
-        .bindPopup("<h2>" + response[i].parent_incident_type +
-        "</h2><hr><p>" + response[i].address_1 + "<p>" + response[i].incident_datetime));
+      if(response[i]){
+       incident = response[i]
+      //var location = 
+       //if(incident.location )//&& incident."coordinates && incident.parent_incident_type && incident.address_1 && incident_datetime){
+
+      //             // Add a new marker to the cluster group and bind a pop-up
+        coord = []
+        if((typeof incident.latitude !== "undefined") && (typeof incident.longitude !== "undefined" &&  (typeof incident.parent_incident_type !== "undefined"))){
+          console.log(i);
+          coord.push(incident.latitude);
+          coord.push(incident.longitude);
+          console.log("latitude")
+          console.log(incident.latitude);
+          console.log("longitude")
+          console.log(incident.longitude);
+          markerArray.push(L.marker(coord));
+          markers.addLayer(L.marker(coord)
+                    .bindPopup("<h2>" + incident.parent_incident_type +
+           "</h2><hr><p>" + incident.address_1 + "</p>" + incident.incident_datetime + "<hr>Zip: " + incident.zip));
+        }
       }
-  
-    }
-  
-    // Add our marker cluster layer to the map
-  crimeMap.addLayer(markers);
+           //.bindPopup("<h2>" + incident.parent_incident_type +
+           //"</h2><hr><p>" + incident.address_1 + "<p>" + incident.incident_datetime));
+        //console.log(incident.location);
+       // }
+        //map.addLayer(markers);
 
-       
-  
+      //}
+    
+        // Check for location property
+      //if (location) {
+    
+           //Add a new marker to the cluster group and bind a pop-up
+        // markers.addLayer(L.marker([response[i].coordinates[1], response[i].coordinates[0]])
+        //   .bindPopup("<h2>" + response[i].parent_incident_type +
+        //   "</h2><hr><p>" + response[i].address_1 + "<p>" + response[i].incident_datetime));
+        // }
+    
+      
+    
+      // Add our marker cluster layer to the map
+    
+    
+    //}
+    }
+    map.addLayer(markers);
+
   });
 
- 
 
 
 
   /* Add Live crime incidents to the Sidebar and the map*/
-  $("#feature-list tbody").empty();
+  // $("#feature-list tbody").empty();
+  // /* Loop through theaters layer and add only features which are in the map bounds */
+  // incidents.forEach(function (incident, i) {
 
-//   /* Loop through theaters layer and add only features which are in the map bounds */
-//   response.forEach(function (incident, i) {
+  //       let type = "";
+  //       latlon.push(incident.location)
+  //       //$('.list-group').httml = ""
+  //       incidentType.push(incident.type)
+  //       var iconurl = "";
 
-//         let type = "";
-//         place.push(location)
-//         //$('.list-group').httml = ""
-//         activity.push('parent_incident_type');
-//         var iconurl = "";
+  //       if(incident.type.startsWith("CRASH")){
+  //           $("#feature-list tbody").append('<tr class="feature-row" id="'+ i + 'lat="' + incident.location[0] + '" lng="' + incident.location[1]+ '"><td style="vertical-align: middle;"><img width="22" height="22" src="../static/img/icons8-car-100v2.png"></td><td class="feature-name">' + incident.address );
+  //           iconurl = "../static/img/icons8-car-100v2.png";
+  //       } else if(incident.type.startsWith("TRAFFIC")){
+  //           $("#feature-list tbody").append('<tr class="feature-row" id="'+ i + 'lat="' + incident.location[0] + '" lng="' + incident.location[1]+ '"><td style="vertical-align: middle;"><img width="22" height="22" src="../static/img/icons8-under-construction-64.png"></td><td class="feature-name">' + incident.address );
+  //           iconurl = "../static/img/icons8-under-construction-64.png";
+  //       } else{
+  //           $("#feature-list tbody").append('<tr class="feature-row" id="'+ i + 'lat="' + incident.location[0] + '" lng="' + incident.location[1]+ '"><td style="vertical-align: middle;"><img width="22" height="22" src="../static/img/icons8-handcuffs-50.png"></td><td class="feature-name">' + incident.address );
+  //           iconurl = "../static/img/icons8-handcuffs-50.png";
+  //       }
+  //       var icon = new L.Icon({
+  //         iconUrl: iconurl,
+  //         shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+  //         iconSize: [32, 32],
+  //         iconAnchor: [12, 41],
+  //         popupAnchor: [1, -34],
+  //         shadowSize: [37, 37]
+  //        });  
+  //       L.marker(incident.location, {icon: icon})
+  //        .bindPopup("<h3>" + incident.type + "</h3>   <hr><h4>" + incident.address.toUpperCase() + "</h4> <hr> <h4>" + incident.time + "</h4>")
+  //        .addTo(map);
+  //      popup.push("<h3>" + incident.type + "</h3> <hr> <h4>" + incident.address.toUpperCase() + "</h4> <hr> <h4>" + incident.time + "</h4>");
+  //      markerArray.push(L.marker(incident.location))
 
-//         if(incident.type.startsWith("Drugs")){
-//             $("#feature-list tbody").append('<tr class="feature-row" id="'+ i + 'lat="' + incident.place[0] + '" lng="' + incident.place[1]+ '"><td style="vertical-align: middle;"><img width="22" height="22" src="assets/img/icons8-car-100v2.png"></td><td class="feature-name">' + incident.address );
-//             iconurl = "assets/img/icons8-car-100v2.png";
-//         } else if(incident.type.startsWith("Theft")){
-//             $("#feature-list tbody").append('<tr class="feature-row" id="'+ i + 'lat="' + incident.place[0] + '" lng="' + incident.place[1]+ '"><td style="vertical-align: middle;"><img width="22" height="22" src="assets/img/icons8-under-construction-64.png"></td><td class="feature-name">' + incident.address );
-//             iconurl = "assets/img/icons8-under-construction-64.png";
-//         } else{
-//             $("#feature-list tbody").append('<tr class="feature-row" id="'+ i + 'lat="' + incident.place[0] + '" lng="' + incident.place[1]+ '"><td style="vertical-align: middle;"><img width="22" height="22" src="assets/img/icons8-handcuffs-50.png"></td><td class="feature-name">' + incident.address );
-//             iconurl = "assets/img/icons8-handcuffs-50.png";
-//         }
-//         var icon = new L.Icon({
-//           iconUrl: iconurl,
-//           shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-//           iconSize: [32, 32],
-//           iconAnchor: [12, 41],
-//           popupAnchor: [1, -34],
-//           shadowSize: [37, 37]
-//          });  
-//         L.marker(incident.place, {icon: icon})
-//          .bindPopup("<h3>" + incident.type + "</h3>   <hr><h4>" + incident.address.toUpperCase() + "</h4> <hr> <h4>" + incident.time + "</h4>")
-//          .addTo(map);
-    //    popup.push("<h3>" + incident.type + "</h3> <hr> <h4>" + incident.address.toUpperCase() + "</h4> <hr> <h4>" + incident.time + "</h4>");
-//        markerArray.push(L.marker(incident.place))
+  //   });
 
-//     });
-
-//     let markerActive;
+    let markerActive;
 
 
-//     $('.feature-row').bind('mouseover',function(){
-//       console.log("Event clicked")
-//       var index = $( ".feature-row" ).index( this );
-//       console.log(index)
-//       place = markerArray[row].getLatLng()
-//       // var numMarker = L.ExtraMarkers.icon({
-//       //   icon: 'fa-number',
-//       //   number: index,
-//       //   markerColor: 'yellow'
-//       //   }); icons8-car-100hover.png
-//       if(incidentType[index].startsWith("Drugs")){
+    // $('.feature-row').bind('mouseover',function(){
+    //   console.log("Event clicked")
+    //   var index = $( ".feature-row" ).index( this );
+    //   console.log(index)
+    //   latlang = markerArray[index].getLatLng()
+    //   // var numMarker = L.ExtraMarkers.icon({
+    //   //   icon: 'fa-number',
+    //   //   number: index,
+    //   //   markerColor: 'yellow'
+    //   //   }); icons8-car-100hover.png
+    //   if(incidentType[index].startsWith("CRASH")){
 
-//       var iconHover = new L.Icon({
-//         iconUrl: 'assets/img/icons8-car-100v2hover.png',
-//         shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-//         iconSize: [32, 32],
-//         iconAnchor: [11, 41],
-//         popupAnchor: [1, -34],
-//         shadowSize: [46, 46],
-//        });  
+    //   var iconHover = new L.Icon({
+    //     iconUrl: '../static/img/icons8-car-100v2hover.png',
+    //     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    //     iconSize: [32, 32],
+    //     iconAnchor: [11, 41],
+    //     popupAnchor: [1, -34],
+    //     shadowSize: [46, 46],
+    //    });  
 
-//     }else if(incidentType[index].startsWith("Theft")){
-//       var iconHover = new L.Icon({
-//         iconUrl: 'assets/img/icons8-under-construction-64hover.png',
-//         shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-//         iconSize: [32, 32],
-//         iconAnchor: [11, 41],
-//         popupAnchor: [1, -34],
-//         shadowSize: [46, 46],
-//        });  
-//     } else{
-//       var iconHover = new L.Icon({
-//         iconUrl: 'assets/img/icons8-handcuffs-50hover.png',
-//         shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-//         iconSize: [32, 32],
-//         iconAnchor: [11, 41],
-//         popupAnchor: [1, -34],
-//         shadowSize: [46, 46],
+    // }else if(incidentType[index].startsWith("TRAFFIC")){
+    //   var iconHover = new L.Icon({
+    //     iconUrl: '../static/img/icons8-under-construction-64hover.png',
+    //     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    //     iconSize: [32, 32],
+    //     iconAnchor: [11, 41],
+    //     popupAnchor: [1, -34],
+    //     shadowSize: [46, 46],
+    //    });  
+    // } else{
+    //   var iconHover = new L.Icon({
+    //     iconUrl: '../static/img/icons8-handcuffs-50hover.png',
+    //     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    //     iconSize: [32, 32],
+    //     iconAnchor: [11, 41],
+    //     popupAnchor: [1, -34],
+    //     shadowSize: [46, 46],
 
-//       });
-//     }
-//     markerActive = new L.Marker(place, {icon: iconHover});
-//     map.addLayer(markerActive);
-//     map.panTo(place);
-//     markerActive.bindPopup(popup[index]).openPopup();
+    //   });
+    // }
+    // markerActive = new L.Marker(latlang, {icon: iconHover});
+    // map.addLayer(markerActive);
+    // map.panTo(latlang);
+    // markerActive.bindPopup(popup[index]).openPopup();
 
   
 
-//       });
-//       $('.feature-row').bind('mouseout',function(){
-//         console.log("Event unclicked")
-//         console.log("Marker active")
-//         console.log(markerActive)
-//         var index = $( "a" ).index( this );
-//         map.removeLayer(markerActive)
-//         });
+    //   });
+    //   $('.feature-row').bind('mouseout',function(){
+    //     console.log("Event unclicked")
+    //     console.log("Marker active")
+    //     console.log(markerActive)
+    //     var index = $( "a" ).index( this );
+    //     map.removeLayer(markerActive)
+    //     });
 
-// /* Search for the incident table for a keyword(particular address or street) */
-// var $rows = $('.table tr');
-// $('.form-control').keyup(function() {
+/* Search for the incident table for a keyword(particular address or street) */
+var $rows = $('.table tr');
+$('.form-control').keyup(function() {
     
-//     var val = '^(?=.*\\b' + $.trim($(this).val()).split(/\s+/).join('\\b)(?=.*\\b') + ').*$',
-//         reg = RegExp(val, 'i'),
-//         text;
+    var val = '^(?=.*\\b' + $.trim($(this).val()).split(/\s+/).join('\\b)(?=.*\\b') + ').*$',
+        reg = RegExp(val, 'i'),
+        text;
     
-//     $rows.show().filter(function() {
-//         text = $(this).text().replace(/\s+/g, ' ');
-//         return !reg.test(text);
-//     }).hide();
-// });
+    $rows.show().filter(function() {
+        text = $(this).text().replace(/\s+/g, ' ');
+        return !reg.test(text);
+    }).hide();
+});
 
-// // SHow entire map window with markers
-// $("#full-extent-btn").click(function() {
-//   var group = new L.featureGroup(markerArray);
-//   map.fitBounds(group.getBounds());
-//   $(".navbar-collapse.in").collapse("hide");
-//   return false;
-// });
-
-
-// // /* Single marker cluster layer to hold all clusters */
-// var markerClusters = new L.MarkerClusterGroup({
-//   spiderfyOnMaxZoom: true,
-//   showCoverageOnHover: false,
-//   zoomToBoundsOnClick: true,
-//   disableClusteringAtZoom: 16
-// });
-
-// var zoomControl = L.control.zoom({
-//   position: "bottomright"
-// }).addTo(map);
-
-// // /* GPS enabled geolocation control set to follow the user's location */
-// var locateControl = L.control.locate({
-//   position: "bottomright",
-//   drawCircle: true,
-//   follow: true,
-//   setView: true,
-//   keepCurrentZoomLevel: true,
-//   markerStyle: {
-//     weight: 2,
-//     opacity: 0.7,
-//     fillOpacity: 0.8
-//   },
-//   circleStyle: {
-//     weight: 2,
-//     clickable: false
-//   },
-//   icon: "fa fa-location-arrow",
-//   metric: false,
-//   strings: {
-//     title: "My location",
-//     popup: "Your location is within {distance} {unit} from this point",
-//     outsideMapBoundsMsg: "You seem located outside the boundaries of the map"
-//   },
-//   locateOptions: {
-//     maxZoom: 18,
-//     watch: true,
-//     enableHighAccuracy: true,
-//     maximumAge: 10000,
-//     timeout: 10000
-//   }
-// }).addTo(map);
-
-// // /* Larger screens get expanded layer control and visible sidebar */
-// if (document.body.clientWidth <= 767) {
-//   var isCollapsed = true;
-// } else {
-//   var isCollapsed = false;
-// }
+// SHow entire map window with markers
+$("#full-extent-btn").click(function() {
+  var group = new L.featureGroup(markerArray);
+  map.fitBounds(group.getBounds());
+  $(".navbar-collapse.in").collapse("hide");
+  return false;
+});
 
 
-// $("#featureModal").on("hidden.bs.modal", function (e) {
-//   $(document).on("mouseout", ".feature-row", clearHighlight);
-// });
+
+
+// /* Single marker cluster layer to hold all clusters */
+var markerClusters = new L.MarkerClusterGroup({
+  spiderfyOnMaxZoom: true,
+  showCoverageOnHover: false,
+  zoomToBoundsOnClick: true,
+  disableClusteringAtZoom: 16
+});
+
+
+
+var zoomControl = L.control.zoom({
+  position: "bottomright"
+}).addTo(map);
+
+// /* GPS enabled geolocation control set to follow the user's location */
+var locateControl = L.control.locate({
+  position: "bottomright",
+  drawCircle: true,
+  follow: true,
+  setView: true,
+  keepCurrentZoomLevel: true,
+  markerStyle: {
+    weight: 2,
+    opacity: 0.7,
+    fillOpacity: 0.8
+  },
+  circleStyle: {
+    weight: 2,
+    clickable: false
+  },
+  icon: "fa fa-location-arrow",
+  metric: false,
+  strings: {
+    title: "My location",
+    popup: "Your location is within {distance} {unit} from this point",
+    outsideMapBoundsMsg: "You seem located outside the boundaries of the map"
+  },
+  locateOptions: {
+    maxZoom: 18,
+    watch: true,
+    enableHighAccuracy: true,
+    maximumAge: 10000,
+    timeout: 10000
+  }
+}).addTo(map);
+
+// /* Larger screens get expanded layer control and visible sidebar */
+if (document.body.clientWidth <= 767) {
+  var isCollapsed = true;
+} else {
+  var isCollapsed = false;
+}
+
+
+
+
+
+$("#featureModal").on("hidden.bs.modal", function (e) {
+  $(document).on("mouseout", ".feature-row", clearHighlight);
+});
+
+
+
 
 var stations = [
   {
@@ -459,24 +508,19 @@ var stations = [
 ];
 
 
-// for (var i = 0; i < stations.length; i++) {
-//   var station = stations[i];
-//   var policeWomanIcon = new L.Icon({
-//    iconUrl: '../static/img/icons8-policeman-female-40.png',
-//    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-//    iconSize: [30, 30],
-//    iconAnchor: [12, 41],
-//    popupAnchor: [1, -34],
-//    shadowSize: [35, 35]
-//   });  
-//   console.log(station.location)
-//   L.marker(station.location, {icon: policeWomanIcon}) 
-//     .bindPopup("<h1>" + station.stationName + "</h1> <hr> <h4>Address & Info - </h4><p>" + station.legend + "</p>")
-//     .addTo(crimeMap);
-// }
+for (var i = 0; i < stations.length; i++) {
+  var station = stations[i];
+  var policeWomanIcon = new L.Icon({
+   iconUrl: '../static/img/icons8-policeman-female-40.png',
+   shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+   iconSize: [30, 30],
+   iconAnchor: [12, 41],
+   popupAnchor: [1, -34],
+   shadowSize: [35, 35]
+  });  
+  console.log(station.location)
+  L.marker(station.location, {icon: policeWomanIcon}) 
+    .bindPopup("<h1>" + station.stationName + "</h1> <hr> <h4>Address & Info - </h4><p>" + station.legend + "</p>")
+    .addTo(map);
+}
 
-// // Live  Incident blink indicator
-// (function blink() {
-//   $('.blink_me').fadeOut(700).fadeIn(700, blink);
-// })();
-// blink_me
