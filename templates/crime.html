@@ -59,6 +59,11 @@
               </ul>
             </li>
 
+            <li><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="full-extent-btn"><i
+              class="fa fa-arrows-alt"></i>&nbsp;&nbsp;Historical Map</a></li>
+            <li><a href="{{ url_for('build') }}" data-toggle="collapse" data-target=".navbar-collapse.in" id="full-extent-btn"><i
+                class="fa fa-clock-o"></i>&nbsp;&nbsp;Live Map</a></li>
+
             <li class="hidden-xs"><a href="#" data-toggle="collapse" data-target=".navbar-collapse.in" id="list-btn"><i class="fa fa-list white"></i>&nbsp;&nbsp;Show Sidebar</a></li>
           </ul>
         </div><!--/.navbar-collapse -->
@@ -119,8 +124,8 @@
     <script src="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
     <!-- <script src="{{ url_for('static', filename='js/leaflet-groupedlayercontrol/leaflet.groupedlayercontrol.js') }}"></script>   -->
-    <!-- <script src="{{ url_for('static', filename='js/config.js') }}"></script>   
-    <script src="{{ url_for('static', filename='js/app.js') }}"></script> -->
+    <script src="{{ url_for('static', filename='js/config.js') }}"></script>   
+    <!-- <script src="{{ url_for('static', filename='js/app.js') }}"></script>  -->
     <script src="{{ url_for('static', filename='js/crime.js') }}"></script>
   </body>
 </html>

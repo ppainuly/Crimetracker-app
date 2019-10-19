@@ -459,21 +459,21 @@ var stations = [
 ];
 
 
-for (var i = 0; i < stations.length; i++) {
-  var station = stations[i];
-  var policeWomanIcon = new L.Icon({
-   iconUrl: '../static/img/icons8-policeman-female-40.png',
-   shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-   iconSize: [30, 30],
-   iconAnchor: [12, 41],
-   popupAnchor: [1, -34],
-   shadowSize: [35, 35]
-  });  
-  console.log(station.location)
-  L.marker(station.location, {icon: policeWomanIcon}) 
-    .bindPopup("<h1>" + station.stationName + "</h1> <hr> <h4>Address & Info - </h4><p>" + station.legend + "</p>")
-    .addTo(crimeMap);
-}
+// for (var i = 0; i < stations.length; i++) {
+//   var station = stations[i];
+//   var policeWomanIcon = new L.Icon({
+//    iconUrl: '../static/img/icons8-policeman-female-40.png',
+//    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+//    iconSize: [30, 30],
+//    iconAnchor: [12, 41],
+//    popupAnchor: [1, -34],
+//    shadowSize: [35, 35]
+//   });  
+//   console.log(station.location)
+//   L.marker(station.location, {icon: policeWomanIcon}) 
+//     .bindPopup("<h1>" + station.stationName + "</h1> <hr> <h4>Address & Info - </h4><p>" + station.legend + "</p>")
+//     .addTo(crimeMap);
+// }
 
 // // Live  Incident blink indicator
 // (function blink() {
