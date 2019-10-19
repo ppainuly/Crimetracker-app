@@ -126,77 +126,137 @@ function sidebarClick(id) {
 }
 
   var incidents = [ {
-      location: [29.61469,-95.217551],
-      time: "10/16/2019 13:47",
+      location: [29.6351406666667,-95.4954473333333],
+      time: "10/19/2019 02:31",
       type:"TRAFFIC HAZARD/NON URGENT",
-      address: "11400 FUQUA ST"
+      address: "14079 MAIN ST"
   },
           {
-      location: [29.788847,-95.465122],
-      time: "10/16/2019 14:40",
+      location: [29.6988202,-95.3868178],
+      time: "10/19/2019 02:16",
       type:"CRASH/MAJOR/NON FATAL",
-      address: "1118 SILBER RD"
+      address: "5598 ALMEDA RD"
   },
           {
-      location: [29.705745,-95.455469],
-      time: "10/16/2019 13:47",
-      type:"TRAFFIC HAZARD/NON URGENT",
-      address: "7500 BELLAIRE BLVD"
+      location: [29.7285231,-95.550971],
+      time: "10/19/2019 02:16",
+      type:"CRASH/MINOR",
+      address: "6531 RICHMOND AVE"
   },
           {
-      location: [29.871031,-95.351936],
-      time: "10/16/2019 13:13",
+      location: [29.7050898,-95.5193628],
+      time: "10/19/2019 02:14",
       type:"TRAFFIC HAZARD/NON URGENT",
-      address: "19798 ALDINE WESTFIELD RD"
+      address: "8698 BELLAIRE BLVD"
   },
   {
-      location: [29.8414568627451,-95.4991699019608],
-      time: "10/16/2019 12:38",
+      location: [29.828779,-95.27576],
+      time: "10/19/2019 01:47",
       type:"CRASH/MAJOR/NON FATAL",
-      address: "13098 COOPERS HAWK DR"
+      address: "8201 DOCKAL RD"
   },
   {
-      location: [29.856015,-95.472975],
-      time: "October 14, 2019",
-      type:"Shooting",
-      address: "704 Greens Road",
-  },
-  {
-      location: [29.693009,-95.496706],
-      time: "October 14, 2019",
-      type:"Sexual Assault",
-      address: "11303 Bissonnet Street",
+      location: [29.9508474117647,-95.3994348823529],
+      time: "10/19/2019 01:46",
+      type:"CRASH/MAJOR/CITY VEH",
+      address: "17506 IMPERIAL VALLEY DR",
   },
     {
-    location: [29.61469,-95.217551],
-    time: "10/10/2019 23:05",
-    type:"TRAFFIC HAZARD/NON URGENT",
-    address: "11400 FUQUA ST"
+    location: [29.6874560555556,-95.530489489899],
+    time: "10/19/2019 01:46",
+    type:"CRASH/MINOR	",
+    address: "8602 SOUTHWEST FWY OB"
   },
   {
-    location: [29.8414568627451,-95.4991699019608],
-    time: "10/10/2019 22:38",
-    type:"CRASH/MAJOR/NON FATAL",
-    address: "13098 COOPERS HAWK DR"
+    location: [29.940118,-95.2981598],
+    time: "10/19/2019 01:42",
+    type:"CRASH/MAJOR/FATALITY",
+    address: "1601 N SAM HOUSTON PKWY E"
   },
     {
-    location: [29.790866,-95.549237],
-    time: "10/10/2019 22:38",
+    location: [29.8596204897959,-95.3616466122449],
+    time: "10/19/2019 01:36",
+    type:"CRASH/MAJOR/NON FATAL	",
+    address: "10210 E HARDY RD	"
+  },
+  {
+    location: [29.837491,-95.375825],
+    time: "10/19/2019 01:12",
+    type:"CRASH/MAJOR/FATALITY",
+    address: "98 BERRY RD"
+  },
+  {
+    location: [29.7499474242424,-95.4047887575758],
+    time: "10/19/2019 01:06",
     type:"CRASH/MINOR",
-    address: "20698 ALDINE WESTFIELD RD"
+    address: "1802 WOODHEAD ST"
   },
   {
-    location: [29.6053344,-95.4772572],
-    time: "10/10/2019 22:31",
-    type:"CRASH/MAJOR/NON FATAL",
-    address: "7200 PINEMONT DR"
+    location: [29.7162418686869,-95.4890527272727],
+    time: "10/19/2019 01:03",
+    type:"CRASH/MINOR/DISTURBANCE",
+    address: "6002 RAMPART ST"
   },
   {
-    location: [29.613215,-95.445998],
-    time: "10/10/2019 22:30",
-    type:"SHOOTING",
-    address: "10200 WESTVIEW DR"
-  }
+    location: [29.7139207,-95.4958117],
+    time: "10/19/2019 01:01",
+    type:"CRASH/MAJOR/NON FATAL	",
+    address: "3737 HILLCROFT AVE"
+  },
+  {
+    location: [29.8135915,-95.4099541],
+    time: "October 17, 2019 8:20 pm",
+    type:"Shooting",
+    address: "2902 North Shepherd Drive"
+  },
+  {
+    location: [29.8697653,-95.409689],
+    time: "October 18, 2019 7:10 pm",
+    type:"Fatal Crash",
+    address: "2000 West Little York Road"
+  },
+  {
+    location: [29.5929686431872,-95.4538557260027],
+    time: "October 17, 2019 2 pm",
+    type:"Fatal Shooting",
+    address: "15829 Ridgeroe Lane"
+  },
+  {
+    location: [29.940118,-95.2981598],
+    time: "October 18, 2019 6:45 am",
+    type:"Fatal Crash",
+    address: "4200 North Sam Houston Parkway East"
+  },
+  {
+    location: [29.670221,-95.277147],
+    time: "October 17, 2019 ",
+    type:"Shooting",
+    address: "8400 Broadway Street"
+  },
+  {
+    location: [29.679933,-95.600118],
+    time: "October 16, 2019 12:30 am",
+    type:"Fatal Shooting",
+    address: "12600 Brookglade Circle"
+  },
+  {
+    location: [29.9505270895522,-95.3984955671642],
+    time: "October 14, 2019 ",
+    type:"Sexual Assault",
+    address: "6200 Antoine Drive"
+  },
+  {
+    location: [29.8702733,-95.4734499],
+    time: "October 14, 2019 6:45 am",
+    type:"Fatal Crash",
+    address: "8600 Bellaire Boulevard"
+  },
+  {
+    location: [29.856015,-95.472975],
+    time: "October 14, 2019",
+    type:"Shooting",
+    address: "704 Greens Road",
+}
 ];
 
   /* Add Live crime incidents to the Sidebar and the map*/
