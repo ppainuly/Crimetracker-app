@@ -1,4 +1,4 @@
-Houston FIVE-O
+![Houston Five-o](static/img/logo.png)
 ========
 
 APP URL : https://live-crime.herokuapp.com/
@@ -37,5 +37,18 @@ ___
 * MongoDB Atlas
 
 **Overview**
+
+### Our Maps
+___ 
+
+#### Live Map
+
+![Houston Five-o Live Map](static/img/livemap.png)
+___ 
+
+#### Historical Map
+
+![Houston Five-o Live Map](static/img/histmap.png)
+
 
 
