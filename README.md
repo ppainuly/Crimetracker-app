@@ -1,5 +1,8 @@
-![Houston Five-o](static/img/logo.png)
-========
+
+<p align="center">
+  <img src="static/img/logo.png" width="250px" height="70px"/>
+</p>
+<hr>
 
 APP URL : https://live-crime.herokuapp.com/
 
