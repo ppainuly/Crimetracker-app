@@ -40,6 +40,9 @@ ___
 * Flask
 * Heroku
 * MongoDB Atlas
+* jQuery
+* Pandas
+* BeautifulSoup4
 
 **Overview**
 
