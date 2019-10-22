@@ -43,6 +43,8 @@ ___
 * jQuery
 * Pandas
 * BeautifulSoup4
+* Pymongo
+* bson
 
 **Overview**
 
