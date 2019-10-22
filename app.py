@@ -1,6 +1,5 @@
 #from flask import Flask,redirect, render_template
 import json
-from pprint import pprint
 from flask import (
     Flask,
     url_for,
@@ -38,11 +37,7 @@ def about():
 def incidentdata():
     livedata = db['livedata']
     data = list(db.livedata.find())
-    # pprint(data)
-    # return json.dumps(data)
     print("Running incidents")
-    pprint(data)
-    #return("A")
     return dumps(data)
 
 @app.errorhandler(500)
