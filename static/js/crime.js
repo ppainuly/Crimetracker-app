@@ -144,13 +144,13 @@ d3.json("https://moto.data.socrata.com/resource/p6kq-vsa3.json").then(function(r
       //             // Add a new marker to the cluster group and bind a pop-up
         coord = []
         if((typeof incident.latitude !== "undefined") && (typeof incident.longitude !== "undefined" &&  (typeof incident.parent_incident_type !== "undefined"))){
-          console.log(i);
+          //console.log(i);
           coord.push(incident.latitude);
           coord.push(incident.longitude);
-          console.log("latitude")
-          console.log(incident.latitude);
-          console.log("longitude")
-          console.log(incident.longitude);
+          //console.log("latitude")
+          //console.log(incident.latitude);
+          //console.log("longitude")
+          //console.log(incident.longitude);
           markerArray.push(L.marker(coord));
           markers.addLayer(L.marker(coord)
                     .bindPopup("<h2>" + incident.parent_incident_type +
@@ -524,3 +524,7 @@ for (var i = 0; i < stations.length; i++) {
     .addTo(map);
 }
 
+// d3.json('/api/incidents').then(function(incidents){
+//   console.log("Starting Incidents")
+//   console.log(incidents);
+// });
