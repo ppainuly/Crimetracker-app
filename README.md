@@ -54,11 +54,15 @@ ___
 #### Live Map
 
 ![Houston Five-o Live Map](static/img/livemap.png)
+
+Live map aims to track Real Time 911 incidents reported to Houston Police Department. The incidents are displayed at the co-ordinate of the location they were reported at. The sidebar lists the incidents in ascending order i.e newer incidents on top. On Hover, the map displays a pop-up attached to the incident which highlights the incident and displays addition details such as type, address and time of the reported incident.
 ___ 
 
 #### Historical Map
 
 ![Houston Five-o Live Map](static/img/histmap.png)
+
+The historical Map gathers all reported incidents from past year and displays them as a marker cluster. Clicking the cluster zooms into the map to show individual incidents. We aim to give a picture of various neighbourhoods and the crime activity reported in various areas of Houston.
 
 
 
