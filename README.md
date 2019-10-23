@@ -9,9 +9,12 @@ APP URL : https://live-crime.herokuapp.com/
 **A web application for tracking live and archival data of crime activity in Houston, Texas.**
 ___
 
-Houston is the fourth largest city in the US, and arguably the best city in Texas. It boasts a booming economy, amazing eateries, fast-paced nightlife and is one of the most culturally diverse populations in the United States. But all this comes with a price. When I place is as as Houston, the population booms, and where there are people there is crime.
+Houston is the fourth largest city in the US, and arguably the best city in Texas. It boasts a booming economy, amazing eateries, fast-paced nightlife and is one of the most culturally diverse populations in the United States. But all this comes with a price. When you live in city like Houston, the population booms, and where there are people there is crime.
 
 Now there is a way to keep up with live and historic incidents of criminal and traffic activity in the Houston area- to help keep you safe and on time, whether you are going to your favorite food truck on Harwin at 2:00 am or searching for the perfect location for your new home or business.
+
+The inspiration for this came about by experiences that we're sure other Houstonians have experienced. The first experience were a series of burglaries in a neighborhood by Sweetwater in the Greenspoint area of Houston, where the homeowners didn't even try to call the police because it takes them too long to show up, if they ever show up. The other experience was a shooting infront of my parent's house where they saw our neighbor's get shot. We know large cities have crime, and crimes usually happen reapetedly in certain areas for variouos reasons, way to many reasons and variables that affect the it to list. So we thought an application to show crime around the city of Houston would be beneficial for people to be aware of what's happending aroudn in the city. 
+
 ___
 ![Houston Five-o Live Map](static/img/about.png)
 ___
