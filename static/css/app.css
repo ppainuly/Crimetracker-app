@@ -1,7 +1,7 @@
 html, body, #container {
   height: 100%;
   width: 100%;
-  overflow: hidden;
+  overflow: auto;
 }
 body {
   padding-top: 50px;
@@ -97,7 +97,7 @@ a#list-btn, a#toolsDrop.dropdown-toggle, a#full-extent-btn, a#about-btn{
   color: #FFFFFF;
 }
 .navbar-collapse.in {
-  overflow-y: hidden;
+  overflow-y: auto;
 }
 .navbar-header .navbar-icon-container {
   margin-right: 15px;
