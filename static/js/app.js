@@ -276,7 +276,9 @@ d3.json('/api/incidents').then(function(incidents){
         var iconurl = "";
 
         if(incident.type.startsWith("CRASH")){
-            $("#feature-list tbody").append('<tr class="feature-row" id="'+ i + 'lat="' + incident.location[0] + '" lng="' + incident.location[1]+ '"><td style="vertical-align: middle;"><img width="22" height="22" src="../static/img/icons8-car-100v2.png"></td><td class="feature-name">' + incident.address );
+            $("#feature-list tbody").append('<tr class="feature-row" id="'+ i + 'lat="' + incident.location[0] + '" lng="' + incident.location[1]+ '"><td style="vertical-align: middle;"><img width="22" height="22" src="../static/img/icons8-car-100v2.png"></td><td class="feature-name"><h4>' + incident.address  + '</h4><br /><span class="badge badge-pill badge-primary">Montrose</span> <span class="badge badge-pill badge-secondary">'+incident.time+'</span>');
+            
+            
             iconurl = "../static/img/icons8-car-100v2.png";
         } else if(incident.type.startsWith("TRAFFIC")){
             $("#feature-list tbody").append('<tr class="feature-row" id="'+ i + 'lat="' + incident.location[0] + '" lng="' + incident.location[1]+ '"><td style="vertical-align: middle;"><img width="22" height="22" src="../static/img/icons8-under-construction-64.png"></td><td class="feature-name">' + incident.address );
