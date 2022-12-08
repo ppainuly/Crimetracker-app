@@ -1,5 +1,5 @@
 bson==0.5.8
-certifi==2019.9.11
+certifi==2022.12.7
 Click==7.0
 Flask==1.1.1
 gunicorn==19.9.0
